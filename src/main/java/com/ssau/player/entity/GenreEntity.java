@@ -1,0 +1,27 @@
+package com.ssau.player.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "geners")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class GenreEntity {
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(name = "id")
+    private String id;
+
+    @Column(name = "genreName")
+    private String genreName;
+
+    @OneToMany(mappedBy = "genre")
+    private List<SongEntity> songs;
+}
