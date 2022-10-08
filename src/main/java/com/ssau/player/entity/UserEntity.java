@@ -1,8 +1,7 @@
 package com.ssau.player.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.List;
@@ -10,8 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserEntity {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -19,15 +17,29 @@ public class UserEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username")
     private String username;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "role")
+    private Role role;
+
 
     @OneToMany(mappedBy = "user")
     private List<PlaylistEntity> playlists;
+
+    public UserEntity(String email, String encode) {
+        this.email = email;
+        this.password = encode;
+//        this.role = roleUser;
+    }
+
+    public Role getRole() {
+        return Role.ROLE_USER;
+    }
 }

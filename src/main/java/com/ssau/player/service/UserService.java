@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+    private final UserRepo userRepo;
+
     @Autowired
-    private UserRepo userRepo;
+    public UserService(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
     public void registration(UserEntity user) throws UserEmailAlreadyExistException {
         if(userRepo.findUserByEmail(user.getEmail()) != null) {
@@ -20,7 +24,6 @@ public class UserService {
         }
         userRepo.save(user);
     }
-
 
     public User getOne(String id) throws UserNotFoundException {
         UserEntity user = userRepo.findById(id).get();
