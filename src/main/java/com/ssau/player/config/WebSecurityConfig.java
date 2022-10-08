@@ -1,4 +1,4 @@
-package com.ssau.player;
+package com.ssau.player.config;
 
 import com.ssau.player.security.AuthEntryPointJwt;
 import com.ssau.player.security.AuthTokenFilter;

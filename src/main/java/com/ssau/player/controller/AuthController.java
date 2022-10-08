@@ -49,7 +49,7 @@ public class AuthController {
       if(userRepo.existsByEmail(user.getEmail())){
           return ResponseEntity.badRequest().body("Пользователь с таким email уже существует");
       }
-            UserEntity userEntity = new UserEntity(user.getEmail(), encoder.encode(user.getPassword()));
+            UserEntity userEntity = new UserEntity(user.getUsername(), user.getEmail(), encoder.encode(user.getPassword()));
             userRepo.save(userEntity);
             return ResponseEntity.ok("Пользователь успешно сохранен");
 

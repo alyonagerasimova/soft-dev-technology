@@ -3,7 +3,6 @@ package com.ssau.player.service;
 import com.ssau.player.dto.PlaylistDto;
 import com.ssau.player.entity.PlaylistEntity;
 import com.ssau.player.entity.UserEntity;
-import com.ssau.player.model.Playlist;
 import com.ssau.player.repository.PlaylistRepo;
 import com.ssau.player.repository.UserRepo;
 import org.springframework.stereotype.Service;

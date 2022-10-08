@@ -2,28 +2,20 @@ package com.ssau.player.controller;
 
 import com.ssau.player.dto.PlaylistDto;
 import com.ssau.player.entity.PlaylistEntity;
-import com.ssau.player.entity.UserEntity;
-import com.ssau.player.exception.UserEmailAlreadyExistException;
-import com.ssau.player.exception.UserNotFoundException;
-import com.ssau.player.model.Playlist;
 import com.ssau.player.service.PlaylistService;
-import com.ssau.player.service.UserService;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "/playlists")
+@RequiredArgsConstructor
 public class PlaylistController {
 
     private final PlaylistService playlistService;
-
-    @Autowired
-    public PlaylistController(PlaylistService playlistService) {
-        this.playlistService = playlistService;
-    }
 
 //    @GetMapping
 //    public List<PlaylistDto> getPlaylists(@RequestParam(required = false) String name) {

@@ -3,6 +3,7 @@ package com.ssau.player.entity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -29,11 +30,11 @@ public class UserEntity {
     @Column(name = "role")
     private Role role;
 
-
     @OneToMany(mappedBy = "user")
     private List<PlaylistEntity> playlists;
 
-    public UserEntity(String email, String encode) {
+    public UserEntity(String username, String email, String encode) {
+        this.username = username;
         this.email = email;
         this.password = encode;
 //        this.role = roleUser;

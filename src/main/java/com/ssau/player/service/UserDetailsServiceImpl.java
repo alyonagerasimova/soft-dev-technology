@@ -16,16 +16,13 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepo userRepo;
-    private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try {
-            UserEntity user = userRepo.findUserByUsername(username);
-            return UserDetailsImpl.fromUser(user);
-        }catch (UsernameNotFoundException e){
-            logger.error("User not found by username: " + username);
-            return null;
+        UserEntity user = userRepo.findUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
         }
+        return UserDetailsImpl.fromUser(user);
     }
 }
