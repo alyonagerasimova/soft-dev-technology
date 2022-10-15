@@ -16,14 +16,16 @@ public class JwtUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("jwtSecretKey")
+    @Value("${app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("864000000")
+    @Value("${app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
+
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
         return Jwts.builder()
                 .setSubject(userPrincipal.getUsername())
                 .setIssuedAt(new Date())
@@ -42,6 +44,8 @@ public class JwtUtils {
             return true;
         }catch (SignatureException e){
             logger.error("Invalid JWT signature: {}", e.getMessage());
+        } catch (IllegalArgumentException e){
+            logger.error("Illegal arguments: {}", e.getMessage());
         }
         return false;
     }

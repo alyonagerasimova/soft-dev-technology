@@ -20,7 +20,7 @@ public class ArtistEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "artistName")
+    @Column(name = "artist_name", nullable = false)
     private String artistName;
 
     @Column(name = "photo")

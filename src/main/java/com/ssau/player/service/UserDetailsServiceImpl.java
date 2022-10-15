@@ -2,10 +2,7 @@ package com.ssau.player.service;
 
 import com.ssau.player.entity.UserEntity;
 import com.ssau.player.repository.UserRepo;
-import com.ssau.player.security.AuthTokenFilter;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userRepo.findUserByUsername(username);
+        UserEntity user = userRepo.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }

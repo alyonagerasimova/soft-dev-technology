@@ -20,7 +20,7 @@ public class AlbumEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "albumName")
+    @Column(name = "album_name", nullable = false)
     private String albumName;
 
     @Column(name = "cover")

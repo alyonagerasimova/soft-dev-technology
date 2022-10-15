@@ -19,7 +19,7 @@ public class GenreEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "genreName")
+    @Column(name = "genre_name", nullable = false)
     private String genreName;
 
     @OneToMany(mappedBy = "genre")

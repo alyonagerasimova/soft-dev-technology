@@ -1,10 +1,14 @@
 package com.ssau.player.repository;
 
+import com.ssau.player.entity.Role;
 import com.ssau.player.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserRepo extends JpaRepository<UserEntity, String> {
-    UserEntity findUserByEmail(String email);
+    UserEntity findByEmail(String email);
     boolean existsByEmail(String email);
-    UserEntity findUserByUsername(String username);
+    UserEntity findByUsername(String username);
+    Role findByRole(Role role);
 }

@@ -17,18 +17,6 @@ public class UserController {
 
     private final UserDetailsServiceImpl userService;
 
-//    @PostMapping(value = "/register", consumes = "application/json")
-//    public ResponseEntity<?> registration(@RequestBody UserEntity user){
-//        try {
-//            userService.registration(user);
-//            return ResponseEntity.ok("Пользователь успешно сохранен");
-//        }catch (UserEmailAlreadyExistException e){
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }catch (Exception e){
-//            return ResponseEntity.badRequest().body("Error");
-//        }
-//    }
-
     @GetMapping("/user")
     public ResponseEntity<?> getOneUser(@RequestParam String username){
         try {

@@ -5,19 +5,16 @@ import com.ssau.player.entity.PlaylistEntity;
 import com.ssau.player.entity.UserEntity;
 import com.ssau.player.repository.PlaylistRepo;
 import com.ssau.player.repository.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PlaylistService {
     private final PlaylistRepo playlistRepo;
     private final UserRepo userRepo;
-
-    public PlaylistService(PlaylistRepo playlistRepo, UserRepo userRepo) {
-        this.playlistRepo = playlistRepo;
-        this.userRepo = userRepo;
-    }
 
     public PlaylistDto createPlaylist(PlaylistEntity playlist, String userId) {
         UserEntity user = userRepo.findById(userId).get();

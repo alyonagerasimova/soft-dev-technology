@@ -16,14 +16,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserRepo userRepo;
@@ -33,7 +31,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword())
+                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
@@ -41,17 +39,26 @@ public class AuthController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         String role = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .findFirst().orElse(null);
-        return ResponseEntity.ok(new JwtDto(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), role));
+        return ResponseEntity.ok(new JwtDto(
+                jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                role));
     }
 
     @PostMapping(value = "/register", consumes = "application/json")
-    public ResponseEntity<?> registerUser(@RequestBody UserDto user){
-      if(userRepo.existsByEmail(user.getEmail())){
-          return ResponseEntity.badRequest().body("Пользователь с таким email уже существует");
-      }
-            UserEntity userEntity = new UserEntity(user.getUsername(), user.getEmail(), encoder.encode(user.getPassword()));
-            userRepo.save(userEntity);
-            return ResponseEntity.ok("Пользователь успешно сохранен");
+    public ResponseEntity<?> registerUser(@RequestBody UserDto user) {
+        if (userRepo.existsByEmail(user.getEmail())) {
+            return ResponseEntity.badRequest().body("Пользователь с таким email уже существует");
+        }
+        UserEntity userEntity = new UserEntity(
+                user.getUsername(),
+                user.getEmail(),
+                encoder.encode(user.getPassword()),
+                Role.ROLE_USER);
+        userRepo.save(userEntity);
+        return ResponseEntity.ok("Пользователь успешно сохранен");
 
     }
 }

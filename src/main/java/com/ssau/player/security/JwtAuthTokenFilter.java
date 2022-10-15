@@ -1,8 +1,10 @@
 package com.ssau.player.security;
 
+import com.ssau.player.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.NonNullApi;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,11 +21,11 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class AuthTokenFilter extends OncePerRequestFilter {
+public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
-    private final UserDetailsService userDetailsService;
-    private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
+    private final UserDetailsServiceImpl userDetailsService;
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthTokenFilter.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -33,11 +35,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             if(jwt != null && jwtUtils.validateJwtToken(jwt)){
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()
                 );
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         }catch (Exception e){
             logger.error("Cannot set user authentication: " + e.getMessage(), e);
@@ -46,7 +48,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     }
 
     private String parseJwt(HttpServletRequest request){
-        String authorization = request.getHeader("Authorization");
-        return StringUtils.hasText(authorization) && authorization.startsWith("Bearer ") ? authorization.substring(7) : null;
+        String headerAuth = request.getHeader("Authorization");
+        return StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")
+                ? headerAuth.substring(7)
+                : null;
     }
 }
