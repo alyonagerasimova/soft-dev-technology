@@ -1,0 +1,41 @@
+<div>
+  <div class="container">
+    <div class="content">
+      <form *ngIf="formModel" [formGroup]="formModel" novalidate>
+        <h1>Войти</h1>
+
+        <div class="form-group">
+          <input id="name-input" class="form-control" type="text" placeholder="Имя" formControlName="username">
+          <div class="validation"
+               *ngIf="formModel.controls['username'].invalid">
+            Не верное имя
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input id="password-select" class="form-control" type="password" placeholder="Пароль"
+                 formControlName="password">
+          <div class="validation"
+               *ngIf="formModel.controls['password'].invalid">
+            Не верный пароль
+          </div>
+        </div>
+
+        <div class="block-buttons">
+          <button type="button" class="btn"
+                  routerLink="/"
+                  [disabled]="formModel.invalid"
+                  (click)="onSave()"
+          >Войти
+          </button>
+          <button type="button" class="btn"
+                  routerLink="/"
+          >Отмена
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
