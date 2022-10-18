@@ -7,8 +7,8 @@
         <div class="form-group">
           <input id="name-input" class="form-control" type="text" placeholder="Имя" formControlName="username">
           <div class="validation"
-               *ngIf="formModel.controls['username'].invalid">
-            Не верное имя
+               *ngIf="formModel.controls['username'].invalid && formModel.controls['username'].touched">
+            Введите имя
           </div>
         </div>
 
@@ -16,16 +16,16 @@
           <input id="password-select" class="form-control" type="password" placeholder="Пароль"
                  formControlName="password">
           <div class="validation"
-               *ngIf="formModel.controls['password'].invalid">
-            Не верный пароль
+               *ngIf="formModel.controls['password'].invalid && formModel.controls['password'].touched">
+            Введите пароль
           </div>
         </div>
 
         <div class="block-buttons">
           <button type="button" class="btn"
-                  routerLink="/"
+                  routerLink="/home"
                   [disabled]="formModel.invalid"
-                  (click)="onSave()"
+                  (click)="onSubmit()"
           >Войти
           </button>
           <button type="button" class="btn"

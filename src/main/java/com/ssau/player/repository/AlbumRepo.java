@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlbumRepo extends JpaRepository<AlbumEntity, String> {
+    AlbumEntity getAlbumById(String id);
 }

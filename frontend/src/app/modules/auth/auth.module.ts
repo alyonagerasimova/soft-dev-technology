@@ -5,6 +5,10 @@ import {RouterModule} from "@angular/router";
 import { AuthComponent } from './auth.component';
 import {RegisterComponent} from "./components/register/register.component";
 import {LoginComponent} from "./components/login/login.component";
+import {httpInterceptorProviders} from "./auth-interceptor";
+import {AuthService} from "./auth.service";
+import {TokenService} from "./token.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,10 +20,16 @@ import {LoginComponent} from "./components/login/login.component";
     CommonModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     AuthComponent
+  ],
+  providers: [
+    httpInterceptorProviders,
+    AuthService,
+    TokenService
   ]
 })
 export class AuthModule {

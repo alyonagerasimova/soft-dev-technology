@@ -5,16 +5,16 @@ import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthModule} from "./modules/auth/auth.module";
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MainPageComponent],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
     FormsModule,
     AuthModule,
-    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -44,7 +44,7 @@ public class JwtUtils {
             return true;
         }catch (SignatureException e){
             logger.error("Invalid JWT signature: {}", e.getMessage());
-        } catch (IllegalArgumentException e){
+        }catch(IllegalArgumentException e){
             logger.error("Illegal arguments: {}", e.getMessage());
         }
         return false;

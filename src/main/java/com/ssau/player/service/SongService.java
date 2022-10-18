@@ -17,7 +17,7 @@ public class SongService {
         return songRepo.findAll().stream().map(SongDto::fromSongEntity).collect(Collectors.toList());
     }
 
-    public SongDto getArtist(String id){
+    public SongDto getSong(String id){
         return SongDto.fromSongEntity(songRepo.getSongById(id));
     }
 

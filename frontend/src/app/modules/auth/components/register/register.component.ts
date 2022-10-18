@@ -1,9 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
 import {Location} from '@angular/common';
-import {User} from "../../../types";
-import {switchMap} from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -13,7 +11,6 @@ import {switchMap} from "rxjs";
 export class RegisterComponent implements OnInit {
 
   public formModel!: FormGroup;
-  public user!: User;
 
   constructor(
     private formBuilder: FormBuilder,
