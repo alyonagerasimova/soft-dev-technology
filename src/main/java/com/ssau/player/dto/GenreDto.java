@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class GenreDto {
     private String id;
-    private String name;
+    private String genreName;
 
     public GenreEntity toGenreEntity(){
         GenreEntity genre = new GenreEntity();
-        genre.setGenreName(name);
+        genre.setGenreName(genreName);
         genre.setId(id);
         return genre;
     }
@@ -18,7 +18,7 @@ public class GenreDto {
     public static GenreDto fromGenreEntity(GenreEntity album){
         GenreDto genreDto = new GenreDto();
         genreDto.setId(album.getId());
-        genreDto.setName(genreDto.getName());
+        genreDto.setGenreName(genreDto.getGenreName());
         return genreDto;
     }
 }

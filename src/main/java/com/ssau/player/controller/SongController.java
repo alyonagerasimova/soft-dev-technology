@@ -9,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(path = "songs")
+@RequestMapping(path = "/songs")
 @RequiredArgsConstructor
 public class SongController {
     private final SongService songService;

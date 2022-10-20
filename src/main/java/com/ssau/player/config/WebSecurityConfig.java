@@ -48,8 +48,8 @@ public class WebSecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
-                .antMatchers( "/").permitAll()
+                .antMatchers("/auth/**", "/test/**").permitAll()
+                .antMatchers( "/", "/welcome").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

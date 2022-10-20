@@ -64,12 +64,6 @@ export class LoginComponent implements OnInit {
         console.log(error)
       }
     )
-    // this.animalsService
-    //   .updateAnimal({
-    //     ...this.animal,
-    //     ...this.formModel.value,
-    //   })
-    //   .subscribe(() => this.goBack());
   }
 
 

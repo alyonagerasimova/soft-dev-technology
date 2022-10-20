@@ -9,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(path = "artists")
+@RequestMapping(path = "/artists")
 @RequiredArgsConstructor
 public class ArtistController {
     private final ArtistService artistService;
@@ -24,7 +24,7 @@ public class ArtistController {
         return artistService.getArtist(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public ArtistDto create(@RequestBody ArtistDto dto) {
         if (dto.getId() != null) {
