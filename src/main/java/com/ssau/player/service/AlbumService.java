@@ -37,7 +37,7 @@ public class AlbumService {
                 .query("select id, album_name from albums", Collections.emptyMap(), (rs, rowNum) -> {
                     AlbumDto album = new AlbumDto();
                     album.setId(rs.getString("id"));
-                    album.setName(rs.getString("album_name"));
+                    album.setAlbumName(rs.getString("album_name"));
                     return album;
                 });
     }

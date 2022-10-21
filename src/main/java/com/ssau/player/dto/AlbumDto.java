@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class AlbumDto {
     private String id;
-    private String name;
+    private String albumName;
 
     public AlbumEntity toAlbumEntity(){
         AlbumEntity album = new AlbumEntity();
-        album.setAlbumName(name);
+        album.setAlbumName(albumName);
         album.setId(id);
         return album;
     }
@@ -18,7 +18,7 @@ public class AlbumDto {
     public static AlbumDto fromAlbumEntity(AlbumEntity album){
         AlbumDto albumDto = new AlbumDto();
         albumDto.setId(album.getId());
-        albumDto.setName(albumDto.getName());
+        albumDto.setAlbumName(albumDto.getAlbumName());
         return albumDto;
     }
 }

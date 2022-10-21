@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public goBack(): void {
-    this.location.go('/auth');
+    this.location.go('/welcome');
   }
 
   public onSave(): void {

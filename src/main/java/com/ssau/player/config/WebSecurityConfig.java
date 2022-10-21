@@ -23,7 +23,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-//    private final UserDetailsService userDetailsService;
     private final JwtAuthEntryPoint unauthorizedHandler;
     private final JwtAuthTokenFilter jwtAuthTokenFilter;
 
@@ -31,11 +30,6 @@ public class WebSecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
-//    @Bean
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
