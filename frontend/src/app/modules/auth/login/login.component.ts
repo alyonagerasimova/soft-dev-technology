@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
-import {UserLogin} from "../../../types";
-import {AuthService} from "../../auth.service";
-import {TokenService} from "../../token.service";
+import {UserLogin} from "../../types";
+import {AuthService} from "../auth.service";
+import {TokenService} from "../token.service";
 import {AuthLoginInfo} from "./AuthLoginInfo";
 
 @Component({
@@ -57,14 +57,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", data.jwt);
         this.tokenStorage.saveUsername(data.username);
         this.isLogin = true;
-        console.log("Login!")
+        console.log("Login!");
       },
       error => {
         this.isLogin = false;
-        console.log(error)
+        console.log(error);
       }
     )
   }
-
-
 }
