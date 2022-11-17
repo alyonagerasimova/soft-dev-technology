@@ -1,0 +1,36 @@
+<div class="main-page-content">
+  <ng-container *ngIf="isLoading">
+        <app-artist *ngFor="let artist of artistsList; index as i;
+        // trackBy: trackByFn
+"
+                               [artist]="artist"
+                               [hidden]="false">
+        </app-artist>
+  </ng-container>
+<!--  {isLoading-->
+<!--                ? <Skeleton active/>-->
+<!--                : <div>-->
+<!--                    <ScrollComponent titleName="Не пропусти топовые плейлисты" data={-->
+<!--  playlists.map(playlist => {-->
+<!--  return <PlaylistCard-->
+<!--      key={playlist._id}-->
+<!--  playlist={playlist}/>;-->
+<!--  })-->
+<!--  }/>-->
+<!--                    <ScrollComponent titleName="Популярные альбомы" data={-->
+<!--  albums.map(album => {-->
+<!--  return <AlbumCard-->
+<!--      key={album._id}-->
+<!--  album={album}-->
+<!--  onClickPlayIcon={() => onClickPlayIcon(album._id)}-->
+<!--  />;-->
+<!--  })}/>-->
+<!--                    <ScrollComponent titleName="Популярные исполнители" data={-->
+<!--  artists.map(art => {-->
+<!--  return (<ArtistCard-->
+<!--      key={art._id}-->
+<!--  artist={art}/>);-->
+<!--  })}/>-->
+<!--                </div>-->
+<!--  }-->
+</div>

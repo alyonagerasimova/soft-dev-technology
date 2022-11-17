@@ -10,9 +10,15 @@ export type UserLogin = {
 }
 
 export type JwtResponse = {
-  jwt: string;
-  id: string;
-  username: string;
-  email: string;
-  role: string;
+  jwt: string,
+  id: string,
+  username: string,
+  email: string,
+  role: string,
+}
+
+export type Artist = {
+  id: string,
+  name: string,
+  photo: string,
 }
