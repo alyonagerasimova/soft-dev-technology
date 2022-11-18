@@ -16,10 +16,10 @@ public class PlaylistController {
 
     private final PlaylistService playlistService;
 
-    @GetMapping
-    public List<PlaylistDto> getPlaylists() {
-        return playlistService.getPlaylists();
-    }
+//    @GetMapping
+//    public List<PlaylistDto> getPlaylists() {
+//        return playlistService.getPlaylists();
+//    }
 
     @GetMapping(path = "/{id}")
     public PlaylistDto getPlaylist(@PathVariable String id) {

@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import {Artist} from "../../types";
 import {Observable} from "rxjs";
+import {Artist, Playlist, Song} from "../types";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArtistService {
-
+export class HomeService {
   private url = "http://localhost:8080/home";
 
-  getArtist(id : string): Observable<Artist>{
-    return this.http.get<Artist>(`this.url/${id}`);
+  public getData(): Observable<[Song[], Playlist[],Artist[]]>{
+    return this.http.get<[Song[], Playlist[],Artist[]]>(this.url);
   }
 
   constructor(private http: HttpClient) { }
-
 }

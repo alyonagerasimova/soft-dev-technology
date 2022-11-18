@@ -5,14 +5,13 @@ import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthModule} from "./modules/auth/auth.module";
-import { MainPageComponent } from './main-page/main-page.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ArtistComponent } from './modules/components/artist/artist.component';
 import { SongComponent } from './modules/components/song/song.component';
 import { PlaylistComponent } from './modules/components/playlist/playlist.component';
 
 @NgModule({
-  declarations: [AppComponent, MainPageComponent, HomeComponent, ArtistComponent, SongComponent, PlaylistComponent],
+  declarations: [AppComponent, HomeComponent, ArtistComponent, SongComponent, PlaylistComponent],
   imports: [
     BrowserModule,
     RouterModule,

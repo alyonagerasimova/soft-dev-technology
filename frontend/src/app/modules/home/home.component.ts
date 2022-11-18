@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Artist} from "../types";
+import {Artist, Playlist, Song} from "../types";
+import {HomeService} from "./home.service";
 
 @Component({
   selector: 'app-home',
@@ -8,18 +9,21 @@ import {Artist} from "../types";
 })
 export class HomeComponent implements OnInit {
   isLoading: boolean = false;
-  artistsList: Artist[] = [];
+  artistsList: Song [] = [];
+  songsList: Song[] = [];
+  playlistsList: Playlist[] = [];
 
-  constructor(
-    // private artistsService: ArtistsService
-  ) { }
+  constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
-    // this.animalsService.getAnimalsData()
-    //   .subscribe(animals => {
-    //     this.animalsList = animals;
-    //     this.loadingComplete = true;
-    //   });
+    this.homeService.getData()
+      .subscribe(data => {
+        this.songsList = data[0];
+        this.playlistsList = data[1];
+        this.artistsList = data[2];
+        console.log(this.artistsList)
+        this.isLoading = true;
+      });
   }
 
 }
