@@ -24,7 +24,7 @@ public class SongController {
         return songService.getSong(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public SongDto create(@RequestBody SongDto dto) {
         if (dto.getId() != null) {

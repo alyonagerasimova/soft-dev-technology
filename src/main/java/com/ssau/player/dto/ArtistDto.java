@@ -7,11 +7,13 @@ import lombok.Data;
 public class ArtistDto {
     private String id;
     private String artistName;
+    private String photo;
 
     public ArtistEntity toArtistEntity(){
         ArtistEntity artist = new ArtistEntity();
-        artist.setArtistName(artistName);
         artist.setId(id);
+        artist.setArtistName(artistName);
+        artist.setPhoto(photo);
         return artist;
     }
 
@@ -19,6 +21,7 @@ public class ArtistDto {
         ArtistDto artistDto = new ArtistDto();
         artistDto.setId(artist.getId());
         artistDto.setArtistName(artistDto.getArtistName());
+        artistDto.setPhoto(artistDto.getPhoto());
         return artistDto;
     }
 }

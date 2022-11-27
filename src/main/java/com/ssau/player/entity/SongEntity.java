@@ -28,6 +28,9 @@ public class SongEntity {
     @Column(name = "duration", nullable = false)
     private double duration;
 
+    @Column(name = "source", nullable = false)
+    private String source;
+
     @ManyToOne
     @JoinColumn(name = "playlist_id")
     private PlaylistEntity playlist;

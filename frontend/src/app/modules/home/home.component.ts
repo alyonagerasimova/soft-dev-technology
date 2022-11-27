@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   artistsList: Song [] = [];
   songsList: Song[] = [];
   playlistsList: Playlist[] = [];
+  url: string = "https://cdn4.deliciouspeaches.com/get/music/20211030/Lyusya_CHebotina_-_Zachem_mne_solnce_Monako_73247109.mp3";
 
   constructor(private homeService: HomeService) { }
 

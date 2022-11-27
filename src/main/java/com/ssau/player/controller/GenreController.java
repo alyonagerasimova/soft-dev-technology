@@ -25,7 +25,7 @@ public class GenreController {
         return genreService.getGenre(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public GenreDto create(@RequestBody GenreDto dto) {
         if (dto.getId() != null) {
