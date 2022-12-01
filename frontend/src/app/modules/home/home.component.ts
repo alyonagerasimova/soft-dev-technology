@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
         console.log(this.artistsList)
         this.isLoading = true;
       });
+    console.log(this.isLoading);
   }
 
 }
