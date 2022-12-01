@@ -2,6 +2,7 @@ package com.ssau.player.service;
 
 import com.ssau.player.dto.AlbumDto;
 import com.ssau.player.dto.ArtistDto;
+import com.ssau.player.entity.ArtistEntity;
 import com.ssau.player.repository.ArtistRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,7 +21,15 @@ public class ArtistService {
     private final DataSource dataSource;
 
     public List<ArtistDto> getArtists(){
-        return artistRepo.findAll().stream().map(ArtistDto::fromArtistEntity).collect(Collectors.toList());
+        return artistRepo.findAll().stream().map(this::convertArtistIntoDto).collect(Collectors.toList());
+    }
+
+    private ArtistDto convertArtistIntoDto(ArtistEntity artistEntity) {
+            ArtistDto artistDto = new ArtistDto();
+            artistDto.setId(artistEntity.getId());
+            artistDto.setArtistName(artistEntity.getArtistName());
+            artistDto.setPhoto(artistEntity.getPhoto());
+            return artistDto;
     }
 
     public ArtistDto getArtist(String id){

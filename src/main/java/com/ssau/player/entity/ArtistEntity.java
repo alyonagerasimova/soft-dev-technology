@@ -1,5 +1,6 @@
 package com.ssau.player.entity;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,8 @@ public class ArtistEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "artist_name", nullable = false)
+    @NotNull
+    @Column(name = "artist_name")
     private String artistName;
 
     @Column(name = "photo")

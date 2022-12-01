@@ -1,5 +1,6 @@
 package com.ssau.player.entity;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,16 +20,17 @@ public class SongEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "songName", nullable = false)
+    @NotNull
+    @Column(name = "song_name")
     private String songName;
 
     @Column(name = "cover")
     private String cover;
 
-    @Column(name = "duration", nullable = false)
+    @Column(name = "duration")
     private double duration;
 
-    @Column(name = "source", nullable = false)
+    @Column(name = "source")
     private String source;
 
     @ManyToOne

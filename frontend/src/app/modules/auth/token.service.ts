@@ -29,7 +29,12 @@ export class TokenService {
     window.sessionStorage.setItem(USERNAME_KEY, user);
   }
 
-  public getUsername(): string{
-    return sessionStorage.getItem(USERNAME_KEY)!;
+  public getUser(): any{
+    const user =  sessionStorage.getItem(USERNAME_KEY);
+    if (user) {
+      return JSON.parse(user);
+    }
+    return {};
   }
+
 }

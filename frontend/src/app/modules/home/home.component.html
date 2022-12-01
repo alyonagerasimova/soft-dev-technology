@@ -7,9 +7,11 @@
   </div>
 
   <ng-container *ngIf="isLoading">
-        <div *ngFor="let artist of artistsList; index as i;">
-          <div>{{artist.id}}</div>
-          <div>{{artist.name}}</div>
-        </div>
+
   </ng-container>
+
+  <div *ngFor="let artist of artistsList; index as i;">
+    <div>{{artist.artistName}}</div>
+  </div>
+
 </div>

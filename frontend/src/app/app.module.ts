@@ -9,9 +9,10 @@ import { HomeComponent } from './modules/home/home.component';
 import { ArtistComponent } from './modules/components/artist/artist.component';
 import { SongComponent } from './modules/components/song/song.component';
 import { PlaylistComponent } from './modules/components/playlist/playlist.component';
+import { AdminComponent } from './modules/admin/admin.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ArtistComponent, SongComponent, PlaylistComponent],
+  declarations: [AppComponent, HomeComponent, ArtistComponent, SongComponent, PlaylistComponent, AdminComponent],
   imports: [
     BrowserModule,
     RouterModule,

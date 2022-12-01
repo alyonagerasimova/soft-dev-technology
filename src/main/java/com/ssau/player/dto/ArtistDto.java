@@ -20,8 +20,8 @@ public class ArtistDto {
     public static ArtistDto fromArtistEntity(ArtistEntity artist){
         ArtistDto artistDto = new ArtistDto();
         artistDto.setId(artist.getId());
-        artistDto.setArtistName(artistDto.getArtistName());
-        artistDto.setPhoto(artistDto.getPhoto());
+        artistDto.setArtistName(artist.getArtistName());
+        artistDto.setPhoto(artist.getPhoto());
         return artistDto;
     }
 }

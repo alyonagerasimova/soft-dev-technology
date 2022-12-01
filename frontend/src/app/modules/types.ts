@@ -19,7 +19,7 @@ export type JwtResponse = {
 
 export type Artist = {
   id: string,
-  name: string,
+  artistName: string,
   photo: string,
 }
 

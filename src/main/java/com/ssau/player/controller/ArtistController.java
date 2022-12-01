@@ -14,10 +14,10 @@ import java.util.List;
 public class ArtistController {
     private final ArtistService artistService;
 
-//    @GetMapping
-//    public List<ArtistDto> getArtists() {
-//        return artistService.getArtists();
-//    }
+    @GetMapping
+    public List<ArtistDto> getArtists() {
+        return artistService.getArtists();
+    }
 
     @GetMapping("/{id}")
     public ArtistDto getArtist(@PathVariable String id) {
