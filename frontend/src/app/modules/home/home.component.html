@@ -1,17 +1,14 @@
-<div class="main-page-content">
-  <div>home page</div>
-  <div>
-    <audio controls>
-      <source [src]="url">
-    </audio>
-  </div>
-
+<div class="container main-page-content">
   <ng-container *ngIf="isLoading">
 
+    <div *ngFor="let artist of artistsList; index as i;">
+      <div>{{artist.artistName}}</div>
+    </div>
+
+    <div>
+      <audio controls>
+        <source [src]="url">
+      </audio>
+    </div>
   </ng-container>
-
-  <div *ngFor="let artist of artistsList; index as i;">
-    <div>{{artist.artistName}}</div>
-  </div>
-
 </div>

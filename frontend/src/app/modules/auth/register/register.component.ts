@@ -13,36 +13,33 @@ import {AuthRegisterInfo} from "./AuthRegisterInfo";
 })
 export class RegisterComponent implements OnInit {
 
-  public formModel!: FormGroup;
   private isRegister = false;
   private user!: AuthRegisterInfo;
+  public formModel: FormGroup = this.formBuilder.group({
+    username: [
+      '',
+      [Validators.required, Validators.minLength(2)],
+    ],
+    email: [
+      '',
+      [Validators.required, Validators.minLength(2)],
+    ],
+    password: ['', [
+      Validators.required, Validators.minLength(5)]],
+  });
+  private errorMessage = '';
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private location: Location,
     private authService: AuthService,
-    private tokenStorage: TokenService) {
-  }
+    private tokenStorage: TokenService) {}
 
   ngOnInit(): void {
-    this.formModel = this.formBuilder.group({
-      username: [
-        '',
-        [Validators.required, Validators.minLength(2)],
-      ],
-      email: [
-        '',
-        [Validators.required, Validators.minLength(2)],
-      ],
-      password: ['', [
-        Validators.required, Validators.minLength(2)]],
-    });
-
-    if (this.tokenStorage.getToken()) {
-      this.isRegister = true;
-      console.log("Get token");
-    }
+    // if (this.tokenStorage.getToken()) {
+    //   this.isRegister = true;
+    //   console.log("Get token");
+    // }
   }
 
   public goBack(): void {
@@ -55,14 +52,15 @@ export class RegisterComponent implements OnInit {
         this.formModel.controls['email'].value,
         this.formModel.controls['password'].value);
 
-      this.authService.signUp(this.user).subscribe(
+      this.authService.register(this.user).subscribe(
         data => {
           this.isRegister = true;
           console.log("Login!");
         },
         error => {
           this.isRegister = false;
-          console.log(error);
+          this.errorMessage = error.error.message;
+          console.log(this.errorMessage);
         }
       );
 
