@@ -13,30 +13,28 @@ import { AuthLoginInfo } from "./AuthLoginInfo";
 })
 export class LoginComponent implements OnInit {
 
-  public formModel!: FormGroup;
-  private isLogin = false;
+  public isLogin = false;
   private user!: AuthLoginInfo;
-  roles: string[] = [];
+  public roles: string[] = [];
+  public errorMessage = '';
+  public formModel: FormGroup = this.formBuilder.group({
+    username: [
+      "",
+      [Validators.required, Validators.minLength(2)],
+    ],
+    password: [
+      "",
+      [Validators.required, Validators.minLength(3)]],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private location: Location,
     private authService: AuthService,
     private tokenStorage: TokenService) {
   }
 
   ngOnInit(): void {
-    this.formModel = this.formBuilder.group({
-      username: [
-        "",
-        [Validators.required, Validators.minLength(2)],
-      ],
-      password: [
-        "",
-        [Validators.required, Validators.minLength(2)]],
-    });
-
     if (this.tokenStorage.getToken()) {
       this.isLogin = true;
       this.roles = this.tokenStorage.getUser().roles;
@@ -52,12 +50,11 @@ export class LoginComponent implements OnInit {
 
     this.user = new AuthLoginInfo(this.formModel.controls["username"].value, this.formModel.controls["password"].value);
 
-    this.authService.attempAuth(this.user)
+    this.authService.login(this.user)
       .subscribe(
         data => {
           this.tokenStorage.saveToken(data.jwt);
-          localStorage.setItem("token", data.jwt);
-          this.tokenStorage.saveUsername(data.username);
+          this.tokenStorage.saveUser(data);
           this.isLogin = true;
           this.roles = this.tokenStorage.getUser().roles;
           this.reloadPage();
@@ -65,6 +62,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.isLogin = false;
+          this.errorMessage = error.message;
           console.log(error);
         }
       );
