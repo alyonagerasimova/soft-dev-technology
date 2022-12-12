@@ -15,7 +15,7 @@ import { SidebarComponent } from './modules/components/sidebar/sidebar.component
 import { UserComponent } from './modules/user/user.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ArtistComponent, SongComponent, PlaylistComponent, AdminComponent, HeaderComponent, SidebarComponent, PlayerComponent, UserComponent],
+  declarations: [AppComponent, HomeComponent, ArtistComponent, SongComponent, PlaylistComponent, AdminComponent, HeaderComponent, SidebarComponent, UserComponent],
   imports: [
     BrowserModule,
     RouterModule,
