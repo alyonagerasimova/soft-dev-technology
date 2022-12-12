@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
-import { UserLogin } from "../../types";
 import { AuthService } from "../auth.service";
 import { TokenService } from "../token.service";
 import { AuthLoginInfo } from "./AuthLoginInfo";

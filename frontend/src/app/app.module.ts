@@ -10,9 +10,13 @@ import { ArtistComponent } from './modules/components/artist/artist.component';
 import { SongComponent } from './modules/components/song/song.component';
 import { PlaylistComponent } from './modules/components/playlist/playlist.component';
 import { AdminComponent } from './modules/admin/admin.component';
+import { HeaderComponent } from './modules/components/header/header.component';
+import { SidebarComponent } from './modules/components/sidebar/sidebar.component';
+import { PlayerComponent } from './modules/components/player/player.component';
+import { UserComponent } from './modules/user/user.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ArtistComponent, SongComponent, PlaylistComponent, AdminComponent],
+  declarations: [AppComponent, HomeComponent, ArtistComponent, SongComponent, PlaylistComponent, AdminComponent, HeaderComponent, SidebarComponent, PlayerComponent, UserComponent],
   imports: [
     BrowserModule,
     RouterModule,

@@ -20,7 +20,7 @@ public class PlaylistEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "playlistName", nullable = false)
+    @Column(name = "playlist-name", nullable = false)
     private String playlistName;
 
     @Column(name = "cover", nullable = false)

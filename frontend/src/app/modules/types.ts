@@ -25,10 +25,17 @@ export type Artist = {
 
 export type Song = {
   id: string,
-  name: string,
+  songName: string,
+  source: string
 }
 
 export type Playlist = {
   id: string,
-  name: string,
+  playlistName: string,
+}
+
+export type Album = {
+  id: string,
+  albumName: string,
+  cover: string
 }

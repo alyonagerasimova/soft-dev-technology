@@ -1,5 +1,7 @@
-<div class="body-style">
-  <div [ngClass]="myClass">
-      <router-outlet></router-outlet>
+<div class="app">
+  <app-sidebar/>
+  <app-header/>
+  <div class="main-content">
+    <router-outlet></router-outlet>
   </div>
 </div>
